@@ -5,7 +5,7 @@ app_name=${APP_NAME}
 app_version=${APP_VERSION}
 executable=/usr/local/bin/${app_name}-sync.sh
 directories=(/data ${CONFIG_DIR} ${RUN_DIR})
-files=(/usr/bin/dijnet-bot-sync.sh /usr/bin/healthchecks_io.sh)
+files=(/usr/local/bin/dijnet-bot-sync.sh /usr/local/bin/healthchecks_io.sh)
 
 exec_on_startup() {
   set +e
@@ -16,9 +16,7 @@ exec_on_startup() {
 init_config_file() {
   if [ ! -f ${CONFIG_FILE} ]
   then
-    echo "INFO: Configuration file ${CONFIG_FILE} does not exists. Copyin template file to location"
-    cp /usr/local/dijnet-bot/dijnet-bot.conf.template ${CONFIG_FILE}
-    echo "WARNING: please initialize necessary environment variables in config file and restart the container. Exiting"
+    echo "INFO: Configuration file ${CONFIG_FILE} does not exists."
     exit 1
   fi
 }
@@ -45,6 +43,12 @@ init_user() {
   for directory in ${directories[@]}; do
     echo "INFO: Modifying ownership of directory: ${directory}"
     chown ${USER}:${GROUP} ${directory}
+  done
+
+  echo "INFO: Configuring files ownership. PUID=${PUID}; PGID=${PGID};"
+  for file in ${files[@]}; do
+    echo "INFO: Modifying ownership of directory: ${file}"
+    chown ${USER}:${GROUP} ${file}
   done
 }
 
