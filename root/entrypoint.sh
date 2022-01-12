@@ -9,6 +9,7 @@ directories=(/data ${CONFIG_DIR} ${RUN_DIR})
 exec_on_startup() {
   set +e
   su "${USER}" -s ${shell} -c ${executable}
+  tail -f /usr/local/dijnet-bot/dijnet-bot.conf.template
   set -e
 }
 
