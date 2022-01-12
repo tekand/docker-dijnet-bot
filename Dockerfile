@@ -35,7 +35,6 @@ RUN groupadd ${GROUP} && \
 
 RUN mkdir ${OUTPUT_DIR}
 RUN mkdir ${CONFIG_DIR} && chown 755 ${CONFIG_DIR}
-RUN mkdir ${LOG_DIR} && chown 755 ${LOG_DIR}
 RUN mkdir ${RUN_DIR} && chown 755 ${RUN_DIR}
 
 COPY root/ /

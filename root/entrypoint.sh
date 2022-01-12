@@ -4,7 +4,7 @@ shell=/bin/sh
 app_name=${APP_NAME}
 app_version=${APP_VERSION}
 executable=/usr/bin/${app_name}-sync.sh
-directories=(/data ${CONFIG_DIR} ${LOG_DIR})
+directories=(/data ${CONFIG_DIR} ${RUN_DIR})
 
 exec_on_startup() {
   set +e
