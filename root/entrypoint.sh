@@ -10,7 +10,6 @@ files=(/usr/bin/dijnet-bot-sync.sh /usr/bin/healthchecks_io.sh)
 exec_on_startup() {
   set +e
   su "${USER}" -s ${shell} -c ${executable}
-  tail -f /usr/local/dijnet-bot/dijnet-bot.conf.template
   set -e
 }
 
