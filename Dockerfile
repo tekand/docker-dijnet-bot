@@ -8,7 +8,6 @@ ENV USER=dijnet
 ENV GROUP=dijnet
 
 ENV CONFIG_DIR=/config
-ENV LOG_DIR=/var/log/dijnet-bot
 ENV RUN_DIR=/var/run/dijnet-bot
 
 ENV CONFIG_FILE=${CONFIG_DIR}/${APP_NAME}.conf

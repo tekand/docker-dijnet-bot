@@ -1,7 +1,6 @@
 #!/bin/sh
 
 . /usr/bin/healthchecks_io.sh
-. /usr/bin/logs.sh
 
 is_dijnet_bot_running() {
   if [ $(lsof | grep $0 | wc -l | tr -d ' ') -gt 1 ]
@@ -14,13 +13,6 @@ is_dijnet_bot_running() {
 
 dijnet_bot_cmd_exec() {
   CMD="time dijnet-bot"
-
-  if [ ! -z "$LOG_MODE" ]
-  then
-    d=$(date +%Y_%m_%d-%H_%M_%S)
-    LOG_FILE="${LOG_DIR}/dijnet-bot-$d.log"
-    CMD="${CMD} > ${LOG_FILE}"
-  fi
 
   echo "INFO: Executing: ${CMD}"
   set +e
@@ -48,8 +40,6 @@ else
   set +o allexport
 
   healthchecks_io_start 
-
-  logs_purge ${LOG_DIR} ${LOG_PURGE}
 
   dijnet_bot_cmd_exec
 
