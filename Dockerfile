@@ -39,6 +39,7 @@ RUN mkdir ${RUN_DIR} && chown 755 ${RUN_DIR}
 
 COPY root/usr/local/bin /usr/local/bin
 COPY root/usr/local/dijnet-bot /usr/local/dijnet-bot
+COPY root/entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
 
