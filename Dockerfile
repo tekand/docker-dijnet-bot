@@ -37,7 +37,8 @@ RUN mkdir ${OUTPUT_DIR}
 RUN mkdir ${CONFIG_DIR} && chown 755 ${CONFIG_DIR}
 RUN mkdir ${RUN_DIR} && chown 755 ${RUN_DIR}
 
-COPY root/ /
+COPY root/usr/local/bin /usr/local/bin
+COPY root/usr/local/dijnet-bot /usr/local/dijnet-bot
 
 ENTRYPOINT ["/entrypoint.sh"]
 
