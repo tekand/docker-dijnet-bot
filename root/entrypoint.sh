@@ -3,7 +3,7 @@
 shell=/bin/sh
 app_name=${APP_NAME}
 app_version=${APP_VERSION}
-executable=/usr/bin/${app_name}-sync.sh
+executable=/usr/local/bin/${app_name}-sync.sh
 directories=(/data ${CONFIG_DIR} ${RUN_DIR})
 files=(/usr/bin/dijnet-bot-sync.sh /usr/bin/healthchecks_io.sh)
 
@@ -45,12 +45,6 @@ init_user() {
   for directory in ${directories[@]}; do
     echo "INFO: Modifying ownership of directory: ${directory}"
     chown ${USER}:${GROUP} ${directory}
-  done
-
-  echo "INFO: Change permissions of executable files"
-  for file in ${files[@]}; do
-    echo "INFO: Modifying ownership of file: ${file}"
-    chown ${USER}:${GROUP} ${file}
   done
 }
 

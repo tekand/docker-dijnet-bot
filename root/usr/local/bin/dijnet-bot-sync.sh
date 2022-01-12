@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /usr/bin/healthchecks_io.sh
+. /usr/local/bin/healthchecks_io.sh
 
 is_dijnet_bot_running() {
   if [ $(lsof | grep $0 | wc -l | tr -d ' ') -gt 1 ]
