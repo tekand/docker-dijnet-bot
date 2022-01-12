@@ -1,25 +1,18 @@
 ARG BASE=alpine:latest
 FROM ${BASE}
 
-LABEL maintainer="l4t3b0@gmail.com"
-
 ENV APP_VERSION=2.1.7
 ENV APP_NAME=dijnet-bot
 
 ENV USER=dijnet
 ENV GROUP=dijnet
 
-ENV CONFIG_DIR=/etc/${APP_NAME}
-ENV LOG_DIR=/var/log/${APP_NAME}
-ENV RUN_DIR=/var/run/${APP_NAME}
+ENV CONFIG_DIR=/config
+ENV LOG_DIR=/var/log/dijnet-bot
+ENV RUN_DIR=/var/run/dijnet-bot
 
 ENV CONFIG_FILE=${CONFIG_DIR}/${APP_NAME}.conf
 ENV PID_FILE=${RUN_DIR}/${APP_NAME}.pid
-
-ENV EXECUTE_ON_STARTUP=
-
-ENV CRON=
-ENV CRON_ABORT=
 
 ENV HEALTHCHECKS_IO_URL=
 
@@ -47,10 +40,6 @@ RUN mkdir ${LOG_DIR} && chown 755 ${LOG_DIR}
 RUN mkdir ${RUN_DIR} && chown 755 ${RUN_DIR}
 
 COPY root/ /
-
-VOLUME [${CONF_DIR}]
-VOLUME [${LOG_DIR}]
-VOLUME [${OUTPUT_DIR}]
 
 ENTRYPOINT ["/entrypoint.sh"]
 

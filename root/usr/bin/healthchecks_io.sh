@@ -6,7 +6,7 @@ healthchecks_io_start() {
   if [ ! -z "${HEALTHCHECKS_IO_URL}" ]
   then
     url=${HEALTHCHECKS_IO_URL}/start
-    echo "INFO: Sending helatchecks.io start signal to '${url}'"
+    echo "INFO: Sending healthchecks.io start signal to '${url}'"
 
     set +e
     curl -SL ${url}
@@ -24,10 +24,10 @@ healthchecks_io_end() {
     if [ "${return_code}" == 0 ]
     then
       url=${HEALTHCHECKS_IO_URL}
-      echo "INFO: Sending helatchecks.io complete signal to '${url}'"
+      echo "INFO: Sending healthchecks.io complete signal to '${url}'"
     else
       url=${HEALTHCHECKS_IO_URL}/fail
-      echo "WARNING: Sending helatchecks.io failure signal to '${url}'"
+      echo "WARNING: Sending healthchecks.io failure signal to '${url}'"
     fi
 
     set +e
