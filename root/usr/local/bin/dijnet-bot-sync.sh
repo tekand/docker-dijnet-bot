@@ -12,7 +12,7 @@ is_dijnet_bot_running() {
 }
 
 dijnet_bot_cmd_exec() {
-  CMD="time dijnet-bot"
+  CMD="node /usr/local/bin/dijnet-bot.js"
 
   echo "INFO: Executing: ${CMD}"
   set +e

@@ -23,9 +23,7 @@ RUN apk --no-cache add \
   shadow \
   tzdata
 
-RUN curl -SL https://github.com/juzraai/dijnet-bot/archive/v${APP_VERSION}.tar.gz \
-  | tar -xzvC /usr/lib \
-  && npm i -g /usr/lib/dijnet-bot-${APP_VERSION}
+RUN curl -SL -o /usr/local/bin/dijnet-bot.js https://github.com/juzraai/dijnet-bot/releases/download/v${APP_VERSION}/dijnet-bot.js
 
 RUN mkdir ${OUTPUT_DIR}
 RUN mkdir ${CONFIG_DIR} && chown 755 ${CONFIG_DIR}
