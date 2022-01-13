@@ -3,13 +3,11 @@
 shell=/bin/sh
 app_name=${APP_NAME}
 app_version=${APP_VERSION}
-executable=/usr/local/bin/${app_name}-sync.sh
 directories=(/data ${CONFIG_DIR} ${RUN_DIR})
-files=(/usr/local/bin/dijnet-bot-sync.sh /usr/local/bin/healthchecks_io.sh)
 
 exec_on_startup() {
   set +e
-  su "${USER}" -s ${shell} -c ${executable}
+  /usr/local/bin/dijnet-bot-sync.sh
   set -e
 }
 
@@ -32,26 +30,6 @@ init_timezone() {
   fi
 }
 
-init_user() {
-  PUID=${PUID:-$(id -u ${USER})}
-  PGID=${PGID:-$(id -g ${GROUP})}
-
-  groupmod -o -g "${PGID}" ${GROUP}
-  usermod -o -u "${PUID}" ${USER}
-
-  echo "INFO: Configuring directories ownership. PUID=${PUID}; PGID=${PGID};"
-  for directory in ${directories[@]}; do
-    echo "INFO: Modifying ownership of directory: ${directory}"
-    chown ${USER}:${GROUP} ${directory}
-  done
-
-  echo "INFO: Configuring files ownership. PUID=${PUID}; PGID=${PGID};"
-  for file in ${files[@]}; do
-    echo "INFO: Modifying ownership of directory: ${file}"
-    chown ${USER}:${GROUP} ${file}
-  done
-}
-
 set -e
 
 # Announce version
@@ -66,8 +44,6 @@ elif [ ! -z "${TZ}" -a ! -f /usr/share/zoneinfo/${TZ} ]; then
 fi
 
 init_config_file
-
-init_user
 
 init_timezone
 
