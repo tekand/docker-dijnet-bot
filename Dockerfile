@@ -1,7 +1,7 @@
 ARG BASE=alpine:latest
 FROM ${BASE}
 
-ENV APP_VERSION=2.1.9
+ENV APP_VERSION=3.0.3
 ENV APP_NAME=dijnet-bot
 
 ENV CONFIG_DIR=/config
